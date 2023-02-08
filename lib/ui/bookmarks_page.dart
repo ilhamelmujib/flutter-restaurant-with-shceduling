@@ -49,7 +49,8 @@ class BookmarksPage extends StatelessWidget {
     });
   }
 
-  Widget _buildItem(BuildContext context, Restaurant restaurant, DatabaseProvider provider) {
+  Widget _buildItem(
+      BuildContext context, Restaurant restaurant, DatabaseProvider provider) {
     return InkWell(
       onTap: () {
         Navigation.intentWithData(DetailPage.routeName, restaurant.id);
@@ -145,9 +146,12 @@ class BookmarksPage extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(onPressed: (){
-              provider.removeBookmark(restaurant.id!);
-            }, icon: const Icon(Icons.delete))
+            IconButton(
+              onPressed: () {
+                provider.removeBookmark(restaurant.id!);
+              },
+              icon: const Icon(Icons.delete),
+            )
           ],
         ),
       ),
