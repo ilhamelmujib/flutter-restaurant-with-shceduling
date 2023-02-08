@@ -4,6 +4,7 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_restaurant/data/api/api_service.dart';
+import 'package:flutter_restaurant/provider/database_provider.dart';
 import 'package:flutter_restaurant/provider/preferences_provider.dart';
 import 'package:flutter_restaurant/provider/restaurant_detail_provider.dart';
 import 'package:flutter_restaurant/provider/restaurant_provider.dart';
@@ -18,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/navigation.dart';
 import 'common/styles.dart';
+import 'data/db/database_helper.dart';
 import 'data/preferences/preferences_helper.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -67,9 +69,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
-        // ),
+        ChangeNotifierProvider(
+          create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
+        ),
       ],
       child: Consumer<PreferencesProvider>(
         builder: (context, provider, child) {
@@ -89,8 +91,8 @@ class MyApp extends StatelessWidget {
             routes: {
               ListPage.routeName: (context) => const ListPage(),
               DetailPage.routeName: (context) => DetailPage(
-                id: ModalRoute.of(context)?.settings.arguments as String,
-              ),
+                    id: ModalRoute.of(context)?.settings.arguments as String,
+                  ),
               SettingsPage.routeName: (context) => const SettingsPage()
             },
           );
