@@ -9,6 +9,7 @@ import 'package:flutter_restaurant/provider/preferences_provider.dart';
 import 'package:flutter_restaurant/provider/restaurant_detail_provider.dart';
 import 'package:flutter_restaurant/provider/restaurant_provider.dart';
 import 'package:flutter_restaurant/provider/scheduling_provider.dart';
+import 'package:flutter_restaurant/ui/bookmarks_page.dart';
 import 'package:flutter_restaurant/ui/detail_page.dart';
 import 'package:flutter_restaurant/ui/list_page.dart';
 import 'package:flutter_restaurant/ui/settings_page.dart';
@@ -93,7 +94,8 @@ class MyApp extends StatelessWidget {
               DetailPage.routeName: (context) => DetailPage(
                     id: ModalRoute.of(context)?.settings.arguments as String,
                   ),
-              SettingsPage.routeName: (context) => const SettingsPage()
+              SettingsPage.routeName: (context) => const SettingsPage(),
+              BookmarksPage.routeName: (context) => const BookmarksPage()
             },
           );
         },

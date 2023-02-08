@@ -1,15 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_restaurant/data/model/restaurant.dart';
-import 'package:flutter_restaurant/provider/restaurant_detail_provider.dart';
+import 'package:flutter_restaurant/provider/restaurant_provider.dart';
 
 import '../data/db/database_helper.dart';
 
 class DatabaseProvider extends ChangeNotifier {
   final DatabaseHelper databaseHelper;
-
-  DatabaseProvider({required this.databaseHelper}) {
-    _getBookmarks();
-  }
 
   late ResultState _state;
   ResultState get state => _state;
@@ -19,6 +15,10 @@ class DatabaseProvider extends ChangeNotifier {
 
   List<Restaurant> _bookmarks = [];
   List<Restaurant> get bookmarks => _bookmarks;
+
+  DatabaseProvider({required this.databaseHelper}) {
+    _getBookmarks();
+  }
 
   void _getBookmarks() async {
     _bookmarks = await databaseHelper.getBookmarks();
