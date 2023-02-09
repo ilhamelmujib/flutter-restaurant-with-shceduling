@@ -6,10 +6,10 @@ import '../provider/database_provider.dart';
 import '../provider/restaurant_provider.dart';
 import 'detail_page.dart';
 
-class BookmarksPage extends StatelessWidget {
-  static const routeName = '/bookmarks';
+class FavoritePage extends StatelessWidget {
+  static const routeName = '/favorite';
 
-  const BookmarksPage({Key? key}) : super(key: key);
+  const FavoritePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class BookmarksPage extends StatelessWidget {
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
-        title: const Text('Bookmarks'),
+        title: const Text('Favorite'),
       ),
       body: _buildList(),
     );
@@ -32,7 +32,7 @@ class BookmarksPage extends StatelessWidget {
   Widget _buildList() {
     return Consumer<DatabaseProvider>(builder: (context, provider, child) {
       if (provider.state == ResultState.hasData) {
-        var restaurants = provider.bookmarks;
+        var restaurants = provider.favorite;
         return ListView.builder(
             padding: const EdgeInsets.all(10),
             itemCount: restaurants.length,
@@ -148,7 +148,7 @@ class BookmarksPage extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                provider.removeBookmark(restaurant.id!);
+                provider.removeFavorite(restaurant.id!);
               },
               icon: const Icon(Icons.delete),
             )

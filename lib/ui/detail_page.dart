@@ -81,9 +81,9 @@ class _BuildDetailState extends State<BuildDetail> {
   Widget build(BuildContext context) {
     return Consumer<DatabaseProvider>(builder: (context, provider, child) {
       return FutureBuilder<bool>(
-          future: provider.isBookmarked(widget.restaurant.id!),
+          future: provider.isFavorite(widget.restaurant.id!),
           builder: (context, snapshot) {
-            var isBookmarked = snapshot.data ?? false;
+            var isFavorite = snapshot.data ?? false;
             return NestedScrollView(
               headerSliverBuilder: (context, isScrolled) {
                 return [
@@ -96,14 +96,14 @@ class _BuildDetailState extends State<BuildDetail> {
                     ),
                     actions: [
                       IconButton(
-                        icon: isBookmarked ? const Icon(Icons.bookmark_added,
-                            color: Colors.white) : const Icon(Icons.bookmark_add_outlined,
+                        icon: isFavorite ? const Icon(Icons.star,
+                            color: Colors.white) : const Icon(Icons.star_border,
                             color: Colors.white),
                         onPressed: () {
-                          if(isBookmarked) {
-                            provider.removeBookmark(widget.restaurant.id!);
+                          if(isFavorite) {
+                            provider.removeFavorite(widget.restaurant.id!);
                           } else {
-                            provider.addBookmark(widget.restaurant);
+                            provider.addFavorite(widget.restaurant);
                           }
                         },
                       ),
@@ -132,6 +132,7 @@ class _BuildDetailState extends State<BuildDetail> {
                         child: Text(widget.restaurant.name!),
                       ),
                       titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
+                      centerTitle: true,
                     ),
                   ),
                 ];

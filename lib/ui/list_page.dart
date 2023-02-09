@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restaurant/common/navigation.dart';
 import 'package:flutter_restaurant/provider/restaurant_provider.dart';
-import 'package:flutter_restaurant/ui/bookmarks_page.dart';
+import 'package:flutter_restaurant/ui/favorite_page.dart';
 import 'package:flutter_restaurant/ui/detail_page.dart';
 import 'package:flutter_restaurant/ui/settings_page.dart';
 import 'package:provider/provider.dart';
@@ -29,9 +29,9 @@ class _ListPageState extends State<ListPage> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigation.intent(BookmarksPage.routeName);
+                Navigation.intent(FavoritePage.routeName);
               },
-              icon: const Icon(Icons.bookmark)),
+              icon: const Icon(Icons.stars)),
           IconButton(
               onPressed: () {
                 Navigation.intent(SettingsPage.routeName);
