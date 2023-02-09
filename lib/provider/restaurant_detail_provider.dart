@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_restaurant/data/model/restaurant.dart';
 import '../data/api/api_service.dart';
+import 'package:http/http.dart' as http;
 
 enum ResultState { loading, noData, hasData, error }
 
@@ -25,7 +26,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
     try {
       _state = ResultState.loading;
       notifyListeners();
-      final data = await apiService.getDetail(id);
+      final data = await apiService.getDetail(http.Client(), id);
       if (data.restaurant == null) {
         _state = ResultState.noData;
         notifyListeners();
