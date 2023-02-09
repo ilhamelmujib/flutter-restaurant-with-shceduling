@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:intl/intl.dart';
 
 class DateTimeHelper {
@@ -12,13 +14,19 @@ class DateTimeHelper {
     final todayDate = dateFormat.format(now);
     final todayDateAndTime = "$todayDate $timeSpecific";
     var resultToday = completeFormat.parseStrict(todayDateAndTime);
+    log("Today: $todayDateAndTime");
 
     // Tomorrow Format
     var formatted = resultToday.add(const Duration(days: 1));
     final tomorrowDate = dateFormat.format(formatted);
     final tomorrowDateAndTime = "$tomorrowDate $timeSpecific";
     var resultTomorrow = completeFormat.parseStrict(tomorrowDateAndTime);
+    log("Tomorrow: $tomorrowDateAndTime");
 
-    return now.isAfter(resultToday) ? resultTomorrow : resultToday;
+    var time = now.isAfter(resultToday) ? resultTomorrow : resultToday;
+    final scheduleTime = dateFormat.format(time);
+    log("Schedule :$scheduleTime $timeSpecific");
+
+    return time;
   }
 }

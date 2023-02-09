@@ -41,7 +41,7 @@ class SettingsPage extends StatelessWidget {
                         if (Platform.isIOS) {
                           customDialog(context);
                         } else {
-                          scheduled.scheduledNews(value);
+                          scheduled.scheduledRestaurants(value);
                           provider.enableDailyNotification(value);
                         }
                       },
